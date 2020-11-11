@@ -11,7 +11,7 @@ const Footer = (props) => {
           <Btn
             key={btn.mode}
             text={btn.mode}
-            isActive={btn.isActive}
+            isActive={props.filterMode === btn.mode}
             handleClick={() => props.onSwitchFilterMode(btn.mode)}
           />
         )
@@ -26,8 +26,8 @@ const Footer = (props) => {
   )
 }
 
-const areEqual = (prevProps, nextProps) => {
-  return prevProps.filterBtns === nextProps.filterBtns
+const areModeEqual = (prevProps, nextProps) => {
+  return prevProps.filterMode === nextProps.filterMode
 }
 
-export default memo(Footer, areEqual)
+export default memo(Footer, areModeEqual)

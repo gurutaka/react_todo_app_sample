@@ -1,34 +1,24 @@
-import React, { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 
-const useFilter = (todos) => {
-  const [filterBtns, setFilterBtns] = React.useState([
+const useFilter = (todos, mode) => {
+  const filterBtns = [
     {
       mode: 'All',
-      isActive: true,
     },
     {
       mode: 'Active',
-      isActive: false,
     },
     {
       mode: 'Complited',
-      isActive: false,
     },
-  ])
-
-  // useMemo でキャッシュ
-  // 再レンダリング時に、再計算する必要なし
-  const filterMode = useMemo(
-    () => filterBtns.find((btn) => btn.isActive).mode,
-    [filterBtns],
-  )
+  ]
 
   // useMemo でキャッシュ
   // 再レンダリング時に、再計算する必要なし
   const filteredTodos = useMemo(
     () =>
       todos.filter((todo) => {
-        switch (filterMode) {
+        switch (mode) {
           case 'All':
             return true
           case 'Active':
@@ -37,22 +27,10 @@ const useFilter = (todos) => {
             return todo.done
         }
       }),
-    [todos, filterMode],
+    [todos, mode],
   )
 
-  const switchFilterMode = useCallback((mode) => {
-    setFilterBtns((prevBtns) =>
-      prevBtns.map((btn) => {
-        return {
-          ...btn,
-          isActive: btn.mode === mode ? true : false,
-        }
-      }),
-    )
-  }, [])
-
-  // FIXME: 引数を2つ以下に減らしたい
-  return [filterBtns, filteredTodos, switchFilterMode]
+  return [filterBtns, filteredTodos]
 }
 
 export default useFilter

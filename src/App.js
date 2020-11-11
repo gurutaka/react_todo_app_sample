@@ -5,6 +5,7 @@ import TodoItem from './components/TodoItem'
 import TodoInput from './components/TodoInput'
 import useFilter from './hooks/useFilter'
 import useTodos from './hooks/useTodos'
+import useMode from './hooks/useMode'
 
 function App() {
   console.log('全体レンダリング')
@@ -13,7 +14,8 @@ function App() {
     { toggleDone, deleteTodo, addTodo, deleteAllTodos },
   ] = useTodos()
 
-  const [filterBtns, displayTodos, switchFilterMode] = useFilter(todos)
+  const [mode, setNewMode] = useMode()
+  const [filterBtns, displayTodos] = useFilter(todos, mode)
 
   return (
     <div className="container">
@@ -36,7 +38,8 @@ function App() {
       <Footer
         onDeleteAllTodos={deleteAllTodos}
         filterBtns={filterBtns}
-        onSwitchFilterMode={switchFilterMode}
+        filterMode={mode}
+        onSwitchFilterMode={setNewMode}
       />
     </div>
   )
