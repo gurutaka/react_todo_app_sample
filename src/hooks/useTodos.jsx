@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 
-const useTodo = () => {
+const useTodos = () => {
   const [todos, setTodos] = React.useState([])
 
   const toggleDone = (id) => {
@@ -35,4 +35,4 @@ const useTodo = () => {
   return [todos, { toggleDone, deleteTodo, addTodo, deleteAllTodos }]
 }
 
-export default useTodo
+export default useTodos

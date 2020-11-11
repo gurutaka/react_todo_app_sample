@@ -12,7 +12,7 @@ const Footer = (props) => {
             key={btn.mode}
             text={btn.mode}
             isActive={btn.isActive}
-            handleClick={() => props.onFilterTodos(btn.mode)}
+            handleClick={() => props.onSwitchFilterMode(btn.mode)}
           />
         )
       })}
