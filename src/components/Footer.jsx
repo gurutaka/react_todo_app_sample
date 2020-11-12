@@ -9,10 +9,10 @@ const Footer = (props) => {
       {props.filterBtns.map((btn) => {
         return (
           <Btn
-            key={btn.mode}
-            text={btn.mode}
-            isActive={props.filterMode === btn.mode}
-            handleClick={() => props.onSwitchFilterMode(btn.mode)}
+            key={btn}
+            text={btn}
+            isActive={props.filterMode === btn}
+            handleClick={() => props.onSwitchFilterMode(btn)}
           />
         )
       })}
